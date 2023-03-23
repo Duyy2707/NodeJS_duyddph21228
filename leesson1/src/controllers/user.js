@@ -2,37 +2,37 @@ import axios from "axios";
 import dotenv from "dotenv";
 dotenv.config();
 
-// const API_URI = "http://localhost:3001/products";
+// const API_URI = "http://localhost:3001/users";
 export const getAll = async (req, res) => {
   try {
-    const { data:products} = await axios.get(`${process.env.API_URI}`);
-    if (products.length === 0) {
+    const { data:users} = await axios.get(`${process.env.API_URI}`);
+    if (users.length === 0) {
       res.status(404).json({
         message: "Không có sản phẩm nào",
       });
     }
-    return res.status(200).json(products);
+    return res.status(200).json(users);
   } catch (error) {
     return res.status(500).json({
       message: error,
     });
   }
-  // const res = await axios.get("http://localhost:3001/products")
+  // const res = await axios.get("http://localhost:3001/users")
   // const data = await res.data
 };
 export const get = async (req, res) => {
   try {
-    const { data: product } = await axios.get(
+    const { data: user } = await axios.get(
       `${process.env.API_URI}/${req.params.id}`
     );
-    if (!product) {
+    if (!user) {
       return res.status(404).json({
         message: "Not found",
       });
     }
     return res.status(200).json({
-      message: "Product found",
-      data: product,
+      message: "user found",
+      data: user,
     });
   } catch (error) {
     return res.status(500).json({
@@ -42,18 +42,18 @@ export const get = async (req, res) => {
 };
 export const create = async (req, res) => {
   try {
-    const { data: product } = await axios.post(
+    const { data: user } = await axios.post(
       `${process.env.API_URI}`,
       req.body
     );
-    if (!product) {
+    if (!user) {
       return res.status(400).json({
         message: "Không thể tạo sản phẩm",
       });
     }
     return res.status(201).json({
-      message: "Product created",
-      data: product,
+      message: "user created",
+      data: user,
     });
   } catch (error) {
     return res.status(500).json({
@@ -76,18 +76,18 @@ export const remove = async (req, res) => {
 
 export const update = async (req, res) => {
   try {
-    const { data: product } = await axios.patch(
+    const { data: user } = await axios.patch(
       `${process.env.API_URI}/${req.params.id}`,
       req.body
     );
-    if (!product) {
+    if (!user) {
       return res.status(404).json({
         message: "Không tìm thấy sản phẩm",
       });
     }
     return res.status(200).json({
       message: "Sản phẩm đã được cập nhật thành công",
-      data: product,
+      data: user,
     });
   } catch (error) {
     return res.status(500).json({
@@ -98,19 +98,19 @@ export const update = async (req, res) => {
 
 export const put = async (req, res) => {
   try {
-    const { data: product } = await axios.put(
+    const { data: user } = await axios.put(
       `${process.env.API_URI}/${req.params.id}`,
       req.body
     );
     console.log(data);
-    if (!product) {
+    if (!user) {
       return res.status(404).json({
         message: "Không tìm thấy sản phẩm",
       });
     }
     return res.status(200).json({
       message: "Sản phẩm đã được cập nhật thành công",
-      data: product,
+      data: user,
     });
   } catch (error) {
     return res.status(500).json({

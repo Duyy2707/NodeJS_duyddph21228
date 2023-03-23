@@ -1,11 +1,11 @@
 import express from "express";
-import routerProduct from "./routes/product.js";
+import routerUsers from "./routes/user.js";
 import dotenv from "dotenv";
 dotenv.config();
 const app = express();
 app.use(express.json());
 
-app.use("/api", routerProduct);
+app.use("/api", routerUsers);
 
 app.listen(process.env.PORT, () => {
   console.log("Server is running on port 8000");
